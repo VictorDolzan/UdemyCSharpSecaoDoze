@@ -8,7 +8,7 @@ using CSharpSecapDoze.Xadrez;
 
 namespace CSharpSecapDoze.TabuleiroX
 {
-    class Peca 
+    abstract class Peca 
     {
         public Posicao posicao { get; set; }
         public Cor cor { get; protected set; }
@@ -26,5 +26,8 @@ namespace CSharpSecapDoze.TabuleiroX
         {
             qtMovimentos++;
         }
+
+        public abstract bool[,] MovimentosPossiveis();
+        
     }
 }

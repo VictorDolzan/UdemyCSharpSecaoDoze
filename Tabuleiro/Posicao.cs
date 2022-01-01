@@ -17,6 +17,11 @@ namespace CSharpSecapDoze.TabuleiroX
             linha = externalLinha;
             coluna = externalColuna;
         }
+        public void DefinirValores(int externalLinha, int externalColuna)
+        {
+            linha = externalLinha;
+            coluna = externalColuna;
+        }
 
         public override string ToString()
         {
