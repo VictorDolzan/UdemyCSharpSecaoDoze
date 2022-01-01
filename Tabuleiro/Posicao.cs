@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
 
-namespace CSharpSecapDoze.Tabuleiro
+namespace CSharpSecapDoze.TabuleiroX
 {
     class Posicao
     {
