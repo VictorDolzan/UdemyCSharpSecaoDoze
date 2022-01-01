@@ -25,10 +25,38 @@ namespace CSharpSecapDoze.TabuleiroX
             return pecas[externalLinha, externalColuna];
         }
 
+        public Peca RetornarPecaT(Posicao pos)
+        {
+            return pecas[pos.linha, pos.coluna];
+        }
+
+        public bool ExistePeca(Posicao pos)
+        {
+            ValidarPosicao(pos);
+            return RetornarPecaT(pos) != null;
+        }
+
         public void ColocarPeca(Peca p, Posicao pos)
         {
             pecas[pos.linha, pos.coluna] = p;
             p.posicao = pos;
+        }
+
+        public bool PosicaoValida(Posicao pos)
+        {
+            if(pos.linha < 0 || pos.linha >= TabLinhas || pos.coluna < 0 || pos.coluna >= TabColunas)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public void ValidarPosicao(Posicao pos)
+        {
+            if(!PosicaoValida(pos))
+            {
+                throw new TabuleiroException(" Posição inválida!");
+            }
         }
     }
 }
