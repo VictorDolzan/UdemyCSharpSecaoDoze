@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
+using CSharpSecapDoze.Xadrez;
 
 namespace CSharpSecapDoze.TabuleiroX
 {
@@ -22,6 +23,12 @@ namespace CSharpSecapDoze.TabuleiroX
         public Peca RetornarPecaT(int externalLinha, int externalColuna)
         {
             return pecas[externalLinha, externalColuna];
+        }
+
+        public void ColocarPeca(Peca p, Posicao pos)
+        {
+            pecas[pos.linha, pos.coluna] = p;
+            p.posicao = pos;
         }
     }
 }

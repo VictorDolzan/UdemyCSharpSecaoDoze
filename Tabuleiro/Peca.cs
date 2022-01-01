@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
+using CSharpSecapDoze.Xadrez;
 
 namespace CSharpSecapDoze.TabuleiroX
 {
@@ -14,9 +15,9 @@ namespace CSharpSecapDoze.TabuleiroX
         public int qtMovimentos { get; protected set; }
         public Tabuleiro tab { get; protected set; }
 
-        public Peca(Posicao externalPosicao, Tabuleiro externalTab, Cor externalCor )
+        public Peca(Tabuleiro externalTab, Cor externalCor )
         {
-            posicao = externalPosicao;
+            posicao = null;
             tab = externalTab;
             cor = externalCor;
             qtMovimentos = 0;
