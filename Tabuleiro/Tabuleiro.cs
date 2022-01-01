@@ -19,6 +19,9 @@ namespace CSharpSecapDoze.TabuleiroX
             TabColunas = externalColunas;
             pecas = new Peca[externalLinhas, externalColunas];
         }
-
+        public Peca RetornarPecaT(int externalLinha, int externalColuna)
+        {
+            return pecas[externalLinha, externalColuna];
+        }
     }
 }
