@@ -15,6 +15,7 @@ namespace CSharpSecapDoze
         {
             for (int contL = 0; contL < externalTab.TabLinhas; contL++)
             {
+                Console.Write(8 - contL + " ");
                 for (int contC = 0; contC < externalTab.TabColunas; contC++)
                 {
                     if (externalTab.RetornarPecaT(contL, contC) == null)
@@ -23,10 +24,27 @@ namespace CSharpSecapDoze
                     }
                     else
                     {
-                        Console.Write(externalTab.RetornarPecaT(contL, contC) + " ");
+                        ImprimirPeca(externalTab.RetornarPecaT(contL, contC));
+                        Console.Write(" ");
                     }
                 }
                 Console.WriteLine();
+            }
+            Console.WriteLine("  a b c d e f g h");
+        }
+
+        public static void ImprimirPeca(Peca externalPeca)
+        {
+            if(externalPeca.cor == Cor.Branca)
+            {
+                Console.Write(externalPeca);
+            }
+            else
+            {
+                ConsoleColor aux = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write(externalPeca);
+                Console.ForegroundColor = aux;
             }
         }
     }
