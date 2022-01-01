@@ -13,12 +13,14 @@ namespace CSharpSecapDoze.Xadrez
         public Tabuleiro PDXTab{ get; private set; }
         private int PDXTurno;
         private Cor JogadorAtual;
+        public bool Terminada { get; private set; }
 
         public PartidaDeXadrez()
         {
             PDXTab = new Tabuleiro(8, 8);
             PDXTurno = 1;
             JogadorAtual = Cor.Branca;
+            Terminada = false;
             ColocarPecas();
         }
 

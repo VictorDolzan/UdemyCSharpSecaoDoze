@@ -16,11 +16,25 @@ namespace CSharpSecapDoze
 
             try
             {
-                PartidaDeXadrez partida = new();               
+                PartidaDeXadrez partida = new();
 
-                Tela.ImprimirTabuleiro(partida.PDXTab);
+                while (!partida.Terminada)
+                {
+                    Console.Clear();
+                    Tela.ImprimirTabuleiro(partida.PDXTab);
+
+                    Console.WriteLine();
+                    Console.Write("Origem: ");
+                    Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();
+                    Console.Write("Destino: ");
+                    Posicao destino = Tela.LerPosicaoXadrez().ToPosicao();
+                    
+
+                    partida.ExecutaMovimento(origem, destino);
+              }
+
             }
-            catch(TabuleiroException e)
+            catch (TabuleiroException e)
             {
                 Console.WriteLine(e.Message);
             }
