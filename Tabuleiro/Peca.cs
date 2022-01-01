@@ -22,5 +22,9 @@ namespace CSharpSecapDoze.TabuleiroX
             cor = externalCor;
             qtMovimentos = 0;
         }
+        public void IncrementarQuantidadeMovimentos()
+        {
+            qtMovimentos++;
+        }
     }
 }
