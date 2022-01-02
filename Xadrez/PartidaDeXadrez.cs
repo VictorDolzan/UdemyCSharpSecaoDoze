@@ -40,6 +40,26 @@ namespace CSharpSecapDoze.Xadrez
             {
                 HSCapturadas.Add(pecaCapturada);
             }
+
+            //jogada Espcial Roque Pequeno
+            if(p is Rei && destino.coluna == origem.coluna + 2)
+            {
+                Posicao origemT = new Posicao(origem.linha, origem.coluna + 3);
+                Posicao destinoT = new Posicao(origem.linha, origem.coluna + 1);
+                Peca T = PDXTab.RetirarPeca(origemT);
+                T.IncrementarQuantidadeMovimentos();
+                PDXTab.ColocarPeca(T, destinoT);
+            }
+
+             //jogada Espcial Roque Grande
+            if(p is Rei && destino.coluna == origem.coluna - 2)
+            {
+                Posicao origemT = new Posicao(origem.linha, origem.coluna - 4);
+                Posicao destinoT = new Posicao(origem.linha, origem.coluna - 1);
+                Peca T = PDXTab.RetirarPeca(origemT);
+                T.IncrementarQuantidadeMovimentos();
+                PDXTab.ColocarPeca(T, destinoT);
+            }
             return pecaCapturada;
         }
         public void DesfazMovimento(Posicao origem, Posicao destino, Peca pecaCapturada)
@@ -52,6 +72,25 @@ namespace CSharpSecapDoze.Xadrez
                 HSCapturadas.Remove(pecaCapturada);
             }
             PDXTab.ColocarPeca(p, origem);
+
+             //jogada Espcial Roque Pequeno
+            if(p is Rei && destino.coluna == origem.coluna + 2)
+            {
+                Posicao origemT = new Posicao(origem.linha, origem.coluna + 3);
+                Posicao destinoT = new Posicao(origem.linha, origem.coluna + 1);
+                Peca T = PDXTab.RetirarPeca(destinoT);
+                T.DecrementarQuantidadeMovimentos();
+                PDXTab.ColocarPeca(T, origemT);
+            }
+             //jogada Espcial Roque Grande
+            if(p is Rei && destino.coluna == origem.coluna - 2)
+            {
+                Posicao origemT = new Posicao(origem.linha, origem.coluna - 4);
+                Posicao destinoT = new Posicao(origem.linha, origem.coluna - 1);
+                Peca T = PDXTab.RetirarPeca(destinoT);
+                T.DecrementarQuantidadeMovimentos();
+                PDXTab.ColocarPeca(T, origemT);
+            }
         }
         public void RealizaJogada(Posicao origem, Posicao destino)
         {
