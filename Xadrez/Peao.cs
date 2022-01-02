@@ -58,20 +58,20 @@ namespace CSharpSecapDoze.Xadrez
                 {
                     mat[pos.linha, pos.coluna] = true;
                 }
-                // //Jogada especial en passant
-                // if(posicao.linha == 3)
-                // {
-                //     Posicao esquerda = new Posicao(posicao.linha, posicao.coluna - 1);
-                //     if(tab.PosicaoValida(esquerda) && ExisteInimigo(esquerda) && tab.RetornarPecaT(esquerda) == partida.VulneravelEnPassant)
-                //     {
-                //         mat[esquerda.linha - 1, esquerda.coluna] = true;
-                //     }
-                //     Posicao direita = new Posicao(posicao.linha, posicao.coluna + 1);
-                //     if(tab.PosicaoValida(direita) && ExisteInimigo(direita) && tab.RetornarPecaT(direita) == partida.VulneravelEnPassant)
-                //     {
-                //         mat[direita.linha - 1, direita.coluna] = true;
-                //     }
-                // }
+                //Jogada especial en passant
+                if(posicao.linha == 3)
+                {
+                    Posicao esquerda = new Posicao(posicao.linha, posicao.coluna - 1);
+                    if(tab.PosicaoValida(esquerda) && ExisteInimigo(esquerda) && tab.RetornarPecaT(esquerda) == partida.VulneravelEnPassant)
+                    {
+                        mat[esquerda.linha - 1, esquerda.coluna] = true;
+                    }
+                    Posicao direita = new Posicao(posicao.linha, posicao.coluna + 1);
+                    if(tab.PosicaoValida(direita) && ExisteInimigo(direita) && tab.RetornarPecaT(direita) == partida.VulneravelEnPassant)
+                    {
+                        mat[direita.linha - 1, direita.coluna] = true;
+                    }
+                }
             }
             else
             {
@@ -98,20 +98,20 @@ namespace CSharpSecapDoze.Xadrez
                     mat[pos.linha, pos.coluna] = true;
                 }
 
-                // //Jogada Especial en passant
-                // if(posicao.linha == 4)
-                // {
-                //     Posicao esquerda = new Posicao(posicao.linha, posicao.coluna - 1);
-                //     if(tab.PosicaoValida(esquerda) && ExisteInimigo(esquerda) && tab.RetornarPecaT(esquerda) == partida.VulneraVelEnPassant)
-                //     {
-                //         mat[esquerda.linha + 1, esquerda.coluna] = true;
-                //     }
-                //     Posicao direita = new Posicao(posicao.linha, posicao.coluna + 1);
-                //     if(tab.PosicaoValida(direita) && ExisteInimigo(direita) && tab.RetornarPecaT(direita) == partida.VulneravelEnPassant)
-                //     {
-                //         mat[direita.linha + 1, direita.coluna] = true;
-                //     }
-                // }
+                //Jogada Especial en passant
+                if(posicao.linha == 4)
+                {
+                    Posicao esquerda = new Posicao(posicao.linha, posicao.coluna - 1);
+                    if(tab.PosicaoValida(esquerda) && ExisteInimigo(esquerda) && tab.RetornarPecaT(esquerda) == partida.VulneravelEnPassant)
+                    {
+                        mat[esquerda.linha + 1, esquerda.coluna] = true;
+                    }
+                    Posicao direita = new Posicao(posicao.linha, posicao.coluna + 1);
+                    if(tab.PosicaoValida(direita) && ExisteInimigo(direita) && tab.RetornarPecaT(direita) == partida.VulneravelEnPassant)
+                    {
+                        mat[direita.linha + 1, direita.coluna] = true;
+                    }
+                }
             }
             return mat;
         }

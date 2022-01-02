@@ -17,6 +17,7 @@ namespace CSharpSecapDoze.Xadrez
         private HashSet<Peca> HSpecas;
         private HashSet<Peca> HSCapturadas;
         public bool xeque { get; private set; }
+        public Peca VulneravelEnPassant { get; private set; }
 
         public PartidaDeXadrez()
         {
@@ -25,6 +26,7 @@ namespace CSharpSecapDoze.Xadrez
             JogadorAtual = Cor.Branca;
             Terminada = false;
             xeque = false;
+            VulneravelEnPassant = null;
             HSpecas = new HashSet<Peca>();
             HSCapturadas = new HashSet<Peca>();
             ColocarPecas();
@@ -60,6 +62,24 @@ namespace CSharpSecapDoze.Xadrez
                 T.IncrementarQuantidadeMovimentos();
                 PDXTab.ColocarPeca(T, destinoT);
             }
+            // Jogada Especial En Passant
+            if(p is Peao)
+            {
+                if(origem.coluna != destino.coluna && pecaCapturada == null)
+                {
+                    Posicao posP;
+                    if(p.cor == Cor.Branca)
+                    {
+                        posP = new Posicao(destino.linha + 1, destino.coluna);
+                    }
+                    else
+                    {
+                        posP = new Posicao(destino.linha - 1, destino.coluna);
+                    }
+                    pecaCapturada = PDXTab.RetirarPeca(posP);
+                    HSCapturadas.Add(pecaCapturada);
+                }
+            }
             return pecaCapturada;
         }
         public void DesfazMovimento(Posicao origem, Posicao destino, Peca pecaCapturada)
@@ -91,6 +111,25 @@ namespace CSharpSecapDoze.Xadrez
                 T.DecrementarQuantidadeMovimentos();
                 PDXTab.ColocarPeca(T, origemT);
             }
+
+            //Jogada Especial En Passant
+            if(p is Peao)
+            {
+                if(origem.coluna != destino.coluna && pecaCapturada == VulneravelEnPassant)
+                {
+                    Peca peao = PDXTab.RetirarPeca(destino);
+                    Posicao posP;
+                    if(p.cor == Cor.Branca)
+                    {
+                        posP = new Posicao(3, destino.coluna);
+                    }
+                    else
+                    {
+                        posP = new Posicao(4, destino.coluna);
+                    }
+                    PDXTab.ColocarPeca(peao, posP);
+                }
+            }
         }
         public void RealizaJogada(Posicao origem, Posicao destino)
         {
@@ -117,6 +156,18 @@ namespace CSharpSecapDoze.Xadrez
 
                 PDXTurno++;
                 MudaJogador();
+            }
+
+            Peca p = PDXTab.RetornarPecaT(destino);
+
+            //Jogada Especial EnPassant
+            if(p is Peao && (destino.linha == origem.linha - 2 || destino.linha == origem.linha + 2))
+            {
+                VulneravelEnPassant = p;
+            }
+            else
+            {
+                VulneravelEnPassant = null;
             }
         }
         public void ValidarPosicaoDeOrigem(Posicao origem)
