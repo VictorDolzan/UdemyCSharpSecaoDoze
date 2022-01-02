@@ -54,6 +54,13 @@ namespace CSharpSecapDoze.Xadrez
                 throw new TabuleiroException("Não há movimentos possíveis para a peça de origem escolhida!");
             }
         }
+        public void ValidarPosicaoDeDestino(Posicao origem, Posicao destino)
+        {
+            if(!PDXTab.RetornarPecaT(origem).PodeMoverPara(destino))
+            {
+                throw new TabuleiroException("Posição de destino inválida!");
+            }
+        }
 
         private void MudaJogador()
         {
