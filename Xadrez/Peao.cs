@@ -98,7 +98,7 @@ namespace CSharpSecapDoze.Xadrez
                     mat[pos.linha, pos.coluna] = true;
                 }
 
-                //Jogada Especial en passant
+                //Jogada Especial En passant
                 if(posicao.linha == 4)
                 {
                     Posicao esquerda = new Posicao(posicao.linha, posicao.coluna - 1);

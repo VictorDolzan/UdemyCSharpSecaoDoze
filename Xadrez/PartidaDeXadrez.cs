@@ -139,6 +139,22 @@ namespace CSharpSecapDoze.Xadrez
                 DesfazMovimento(origem, destino, pecaCpturada);
                 throw new TabuleiroException("Você não pode ser colocar em Xeque!");
             }
+
+            Peca p = PDXTab.RetornarPecaT(destino);
+
+            //Jogada Especial Promocao
+
+            if(p is Peao)
+            {
+                if(p.cor == Cor.Branca && destino.linha == 0 || p.cor == Cor.Preta && destino.linha == 7)
+                {
+                    p = PDXTab.RetirarPeca(destino);
+                    HSpecas.Remove(p);
+                    Peca dama = new Dama(PDXTab, p.cor);
+                    PDXTab.ColocarPeca(dama, destino);
+                    HSpecas.Add(dama);
+                }
+            }
             if (EstaEmXeque(Adversaria(JogadorAtual)))
             {
                 xeque = true;
@@ -156,9 +172,7 @@ namespace CSharpSecapDoze.Xadrez
 
                 PDXTurno++;
                 MudaJogador();
-            }
-
-            Peca p = PDXTab.RetornarPecaT(destino);
+            }            
 
             //Jogada Especial EnPassant
             if(p is Peao && (destino.linha == origem.linha - 2 || destino.linha == origem.linha + 2))
