@@ -18,12 +18,20 @@ namespace CSharpSecapDoze
             ImprimirPecasCapturadas(partida);
             Console.WriteLine();
             Console.WriteLine("Turno: " + partida.PDXTurno);
-            Console.WriteLine("Aguardando Jogada: " + partida.JogadorAtual);
-            if(partida.xeque)
+            if (!partida.Terminada)
             {
-                Console.WriteLine("VOCÊ ESTÁ EM XEQUE!");
+                Console.WriteLine("Aguardando Jogada: " + partida.JogadorAtual);
+                if (partida.xeque)
+                {
+                    Console.WriteLine("VOCÊ ESTÁ EM XEQUE!");
+                }
             }
-        
+            else
+            {
+                Console.WriteLine("XEQUEMATE!");
+                Console.WriteLine("Vencedor: " + partida.JogadorAtual);
+            }
+
         }
         public static void ImprimirPecasCapturadas(PartidaDeXadrez partida)
         {
@@ -41,7 +49,7 @@ namespace CSharpSecapDoze
         public static void ImprimirConjunto(HashSet<Peca> conjunto)
         {
             Console.Write("[");
-            foreach(Peca x in conjunto)
+            foreach (Peca x in conjunto)
             {
                 Console.Write(x + " ");
             }
@@ -53,7 +61,7 @@ namespace CSharpSecapDoze
             {
                 Console.Write(8 - contL + " ");
                 for (int contC = 0; contC < externalTab.TabColunas; contC++)
-                {                   
+                {
                     ImprimirPeca(externalTab.RetornarPecaT(contL, contC));
                 }
                 Console.WriteLine();
@@ -70,15 +78,15 @@ namespace CSharpSecapDoze
             {
                 Console.Write(8 - contL + " ");
                 for (int contC = 0; contC < externalTab.TabColunas; contC++)
-                { 
-                    if(posicoesPossiveis[contL, contC] == true)  
+                {
+                    if (posicoesPossiveis[contL, contC] == true)
                     {
                         Console.BackgroundColor = fundoAlterado;
-                    } 
+                    }
                     else
                     {
                         Console.BackgroundColor = fundoOriginal;
-                    }               
+                    }
                     ImprimirPeca(externalTab.RetornarPecaT(contL, contC));
                     Console.BackgroundColor = fundoOriginal;
                 }

@@ -194,10 +194,11 @@ namespace CSharpSecapDoze.Xadrez
                     {
                         if (mat[contL, contC])
                         {
+                            Posicao origem = x.posicao;
                             Posicao destino = new Posicao(contL, contC);
-                            Peca pecaCapturada = ExecutaMovimento(x.posicao, destino);
+                            Peca pecaCapturada = ExecutaMovimento(origem, destino);
                             bool testeXeque = EstaEmXeque(cor);
-                            DesfazMovimento(x.posicao, destino, pecaCapturada);
+                            DesfazMovimento(origem, destino, pecaCapturada);
                             if (!testeXeque)
                             {
                                 return false;
