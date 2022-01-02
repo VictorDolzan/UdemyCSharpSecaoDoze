@@ -10,8 +10,10 @@ namespace CSharpSecapDoze.Xadrez
 {
     class Rei : Peca
     {
-        public Rei(Tabuleiro RTab, Cor RCor) : base(RTab, RCor)
-        {            
+        private PartidaDeXadrez RPartidaDeXadrez;
+        public Rei(Tabuleiro RTab, Cor RCor, PartidaDeXadrez partida) : base(RTab, RCor)
+        {      
+            RPartidaDeXadrez = partida;
         }
 
         public override string ToString()
