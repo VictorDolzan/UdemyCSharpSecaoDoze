@@ -11,8 +11,8 @@ namespace CSharpSecapDoze.Xadrez
     class PartidaDeXadrez
     {
         public Tabuleiro PDXTab{ get; private set; }
-        private int PDXTurno;
-        private Cor JogadorAtual;
+        public int PDXTurno{ get; private set; }
+        public Cor JogadorAtual{ get; private set; }
         public bool Terminada { get; private set; }
 
         public PartidaDeXadrez()
@@ -30,6 +30,41 @@ namespace CSharpSecapDoze.Xadrez
             p.IncrementarQuantidadeMovimentos();
             Peca pecaCapturada = PDXTab.RetirarPeca(destino);
             PDXTab.ColocarPeca(p, destino);
+        }
+
+        public void RealizaJogada(Posicao origem, Posicao destino)
+        {
+            ExecutaMovimento(origem, destino);
+            PDXTurno++;
+            MudaJogador();
+        }
+        public void ValidarPosicaoDeOrigem(Posicao origem)
+        {
+            if(PDXTab.RetornarPecaT(origem) == null)
+            {
+                throw new TabuleiroException("Não existe peça na posição escolhida!");
+
+            }
+            if(JogadorAtual != PDXTab.RetornarPecaT(origem).cor)
+            {
+                throw new TabuleiroException("A peça de origem escolhida não é sua!");
+            }
+            if(!PDXTab.RetornarPecaT(origem).ExistemMovimentosPossiveis())
+            {
+                throw new TabuleiroException("Não há movimentos possíveis para a peça de origem escolhida!");
+            }
+        }
+
+        private void MudaJogador()
+        {
+            if(JogadorAtual == Cor.Branca)
+            {
+                JogadorAtual = Cor.Preta;
+            }
+            else
+            {
+                JogadorAtual = Cor.Branca;
+            }
         }
         private void ColocarPecas()
         {

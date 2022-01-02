@@ -26,6 +26,21 @@ namespace CSharpSecapDoze.TabuleiroX
         {
             qtMovimentos++;
         }
+        public bool ExistemMovimentosPossiveis()
+        {
+            bool[,] mat = MovimentosPossiveis();
+            for(int contL =0; contL < tab.TabLinhas; contL++)
+            {
+                for(int contC = 0; contC < tab.TabColunas; contC++)
+                {
+                    if(mat[contL, contC] == true)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
 
         public abstract bool[,] MovimentosPossiveis();
         

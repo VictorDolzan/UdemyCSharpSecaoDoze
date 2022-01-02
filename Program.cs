@@ -20,24 +20,36 @@ namespace CSharpSecapDoze
 
                 while (!partida.Terminada)
                 {
-                    Console.Clear();
-                    Tela.ImprimirTabuleiro(partida.PDXTab);
+                    try
+                    {
+                        Console.Clear();
+                        Tela.ImprimirTabuleiro(partida.PDXTab);
+                        Console.WriteLine();
+                        Console.WriteLine("Turno: " + partida.PDXTurno);
+                        Console.WriteLine("Aguardando Jogada: " + partida.JogadorAtual);
 
-                    Console.WriteLine();
-                    Console.Write("Origem: ");
-                    Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();
+
+                        Console.WriteLine();
+                        Console.Write("Origem: ");
+                        Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();
+                        partida.ValidarPosicaoDeOrigem(origem);
+
+                        bool[,] posicoesPossiveis = partida.PDXTab.RetornarPecaT(origem).MovimentosPossiveis();
+                        Console.Clear();
+                        Tela.ImprimirTabuleiro(partida.PDXTab, posicoesPossiveis);
+
+                        Console.WriteLine();
+                        Console.Write("Destino: ");
+                        Posicao destino = Tela.LerPosicaoXadrez().ToPosicao();
 
 
-                    bool[,] posicoesPossiveis = partida.PDXTab.RetornarPecaT(origem).MovimentosPossiveis();
-                    Console.Clear();
-                    Tela.ImprimirTabuleiro(partida.PDXTab, posicoesPossiveis);
-
-                    Console.WriteLine();
-                    Console.Write("Destino: ");
-                    Posicao destino = Tela.LerPosicaoXadrez().ToPosicao();
-                    
-
-                    partida.ExecutaMovimento(origem, destino);
+                        partida.RealizaJogada(origem, destino);
+                    }
+                    catch(TabuleiroException e)
+                    {
+                        Console.WriteLine(e.Message);
+                        Console.ReadLine();
+                    }
               }
 
             }
@@ -45,7 +57,7 @@ namespace CSharpSecapDoze
             {
                 Console.WriteLine(e.Message);
             }
-            catch(IndexOutOfRangeException e)
+            catch (IndexOutOfRangeException e)
             {
                 Console.WriteLine(e.Message);
             }
