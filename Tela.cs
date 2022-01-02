@@ -17,20 +17,39 @@ namespace CSharpSecapDoze
             {
                 Console.Write(8 - contL + " ");
                 for (int contC = 0; contC < externalTab.TabColunas; contC++)
-                {
-                    if (externalTab.RetornarPecaT(contL, contC) == null)
-                    {
-                        Console.Write("- ");
-                    }
-                    else
-                    {
-                        ImprimirPeca(externalTab.RetornarPecaT(contL, contC));
-                        Console.Write(" ");
-                    }
+                {                   
+                    ImprimirPeca(externalTab.RetornarPecaT(contL, contC));
                 }
                 Console.WriteLine();
             }
             Console.WriteLine("  a b c d e f g h");
+        }
+        public static void ImprimirTabuleiro(Tabuleiro externalTab, bool[,] posicoesPossiveis)
+        {
+
+            ConsoleColor fundoOriginal = Console.BackgroundColor;
+            ConsoleColor fundoAlterado = ConsoleColor.DarkGray;
+
+            for (int contL = 0; contL < externalTab.TabLinhas; contL++)
+            {
+                Console.Write(8 - contL + " ");
+                for (int contC = 0; contC < externalTab.TabColunas; contC++)
+                { 
+                    if(posicoesPossiveis[contL, contC] == true)  
+                    {
+                        Console.BackgroundColor = fundoAlterado;
+                    } 
+                    else
+                    {
+                        Console.BackgroundColor = fundoOriginal;
+                    }               
+                    ImprimirPeca(externalTab.RetornarPecaT(contL, contC));
+                    Console.BackgroundColor = fundoOriginal;
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine("  a b c d e f g h");
+            Console.BackgroundColor = fundoOriginal;
         }
         public static PosicaoXadrez LerPosicaoXadrez()
         {
@@ -43,16 +62,24 @@ namespace CSharpSecapDoze
 
         public static void ImprimirPeca(Peca externalPeca)
         {
-            if(externalPeca.cor == Cor.Branca)
+            if (externalPeca == null)
             {
-                Console.Write(externalPeca);
+                Console.Write("- ");
             }
             else
             {
-                ConsoleColor aux = Console.ForegroundColor;
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write(externalPeca);
-                Console.ForegroundColor = aux;
+                if (externalPeca.cor == Cor.Branca)
+                {
+                    Console.Write(externalPeca);
+                }
+                else
+                {
+                    ConsoleColor aux = Console.ForegroundColor;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write(externalPeca);
+                    Console.ForegroundColor = aux;
+                }
+                Console.Write(" ");
             }
         }
     }

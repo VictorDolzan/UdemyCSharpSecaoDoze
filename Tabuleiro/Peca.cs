@@ -18,8 +18,8 @@ namespace CSharpSecapDoze.TabuleiroX
         public Peca(Tabuleiro externalTab, Cor externalCor )
         {
             posicao = null;
-            tab = externalTab;
-            cor = externalCor;
+            this.tab = externalTab;
+            this.cor = externalCor;
             qtMovimentos = 0;
         }
         public void IncrementarQuantidadeMovimentos()

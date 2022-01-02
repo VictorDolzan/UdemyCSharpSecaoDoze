@@ -17,7 +17,7 @@ namespace CSharpSecapDoze.Xadrez
        private bool PodeMover(Posicao pos)
         {
             Peca p = tab.RetornarPecaT(pos);
-            return p == null || p.cor != this.cor;
+            return p == null || p.cor != cor;
         }
 
         public override bool[,] MovimentosPossiveis()
@@ -31,7 +31,7 @@ namespace CSharpSecapDoze.Xadrez
             while(tab.PosicaoValida(pos) && PodeMover(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
-                if(tab.RetornarPecaT(pos) != null && tab.RetornarPecaT(pos).cor != this.cor)
+                if(tab.RetornarPecaT(pos) != null && tab.RetornarPecaT(pos).cor != cor)
                 {
                     break;
                 } 
@@ -42,7 +42,7 @@ namespace CSharpSecapDoze.Xadrez
             while(tab.PosicaoValida(pos) && PodeMover(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
-                if(tab.RetornarPecaT(pos) != null && tab.RetornarPecaT(pos).cor != this.cor)
+                if(tab.RetornarPecaT(pos) != null && tab.RetornarPecaT(pos).cor != cor)
                 {
                     break;
                 } 
@@ -53,7 +53,7 @@ namespace CSharpSecapDoze.Xadrez
             while(tab.PosicaoValida(pos) && PodeMover(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
-                if(tab.RetornarPecaT(pos) != null && tab.RetornarPecaT(pos).cor != this.cor)
+                if(tab.RetornarPecaT(pos) != null && tab.RetornarPecaT(pos).cor != cor)
                 {
                     break;
                 } 
@@ -64,7 +64,7 @@ namespace CSharpSecapDoze.Xadrez
             while(tab.PosicaoValida(pos) && PodeMover(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
-                if(tab.RetornarPecaT(pos) != null && tab.RetornarPecaT(pos).cor != this.cor)
+                if(tab.RetornarPecaT(pos) != null && tab.RetornarPecaT(pos).cor != cor)
                 {
                     break;
                 } 

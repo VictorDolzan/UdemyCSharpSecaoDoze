@@ -22,7 +22,7 @@ namespace CSharpSecapDoze.Xadrez
         private bool PodeMover(Posicao pos)
         {
             Peca p = tab.RetornarPecaT(pos);
-            return p == null || p.cor != this.cor;
+            return p == null || p.cor != cor;
         }
 
         public override bool[,] MovimentosPossiveis()

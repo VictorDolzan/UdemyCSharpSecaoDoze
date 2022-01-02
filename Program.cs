@@ -26,6 +26,13 @@ namespace CSharpSecapDoze
                     Console.WriteLine();
                     Console.Write("Origem: ");
                     Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();
+
+
+                    bool[,] posicoesPossiveis = partida.PDXTab.RetornarPecaT(origem).MovimentosPossiveis();
+                    Console.Clear();
+                    Tela.ImprimirTabuleiro(partida.PDXTab, posicoesPossiveis);
+
+                    Console.WriteLine();
                     Console.Write("Destino: ");
                     Posicao destino = Tela.LerPosicaoXadrez().ToPosicao();
                     
@@ -35,6 +42,10 @@ namespace CSharpSecapDoze
 
             }
             catch (TabuleiroException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            catch(IndexOutOfRangeException e)
             {
                 Console.WriteLine(e.Message);
             }
