@@ -26,6 +26,10 @@ namespace CSharpSecapDoze.TabuleiroX
         {
             qtMovimentos++;
         }
+        public void DecrementarQuantidadeMovimentos()
+        {
+            qtMovimentos--;
+        }
         public bool ExistemMovimentosPossiveis()
         {
             bool[,] mat = MovimentosPossiveis();
