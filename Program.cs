@@ -23,11 +23,7 @@ namespace CSharpSecapDoze
                     try
                     {
                         Console.Clear();
-                        Tela.ImprimirTabuleiro(partida.PDXTab);
-                        Console.WriteLine();
-                        Console.WriteLine("Turno: " + partida.PDXTurno);
-                        Console.WriteLine("Aguardando Jogada: " + partida.JogadorAtual);
-
+                        Tela.ImprimirPartida(partida);
 
                         Console.WriteLine();
                         Console.Write("Origem: ");
