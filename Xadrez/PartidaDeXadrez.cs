@@ -98,7 +98,7 @@ namespace CSharpSecapDoze.Xadrez
         }
         public void ValidarPosicaoDeDestino(Posicao origem, Posicao destino)
         {
-            if (!PDXTab.RetornarPecaT(origem).PodeMoverPara(destino))
+            if (!PDXTab.RetornarPecaT(origem).MovimentoPossivel(destino))
             {
                 throw new TabuleiroException("Posição de destino inválida!");
             }
