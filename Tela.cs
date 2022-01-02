@@ -19,6 +19,11 @@ namespace CSharpSecapDoze
             Console.WriteLine();
             Console.WriteLine("Turno: " + partida.PDXTurno);
             Console.WriteLine("Aguardando Jogada: " + partida.JogadorAtual);
+            if(partida.xeque)
+            {
+                Console.WriteLine("VOCÊ ESTÁ EM XEQUE!");
+            }
+        
         }
         public static void ImprimirPecasCapturadas(PartidaDeXadrez partida)
         {
